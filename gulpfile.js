@@ -226,3 +226,14 @@ gulp.task('build', gulp.series('clean', 'images', 'sprite', 'handlebars', gulp.p
 gulp.task('build-production', gulp.series('clean', 'images', 'sprite', 'handlebars', 'beautify-html', gulp.parallel('assets', 'styles', 'scripts-production')));
 
 gulp.task('default', gulp.series('build', 'serve'));
+
+var gulp = require('gulp');
+var ghPages = require('gulp-gh-pages');
+
+gulp.task('deploy', function () {
+    return gulp.src("./prod/**/*")
+      .pipe(deploy({ 
+        remoteUrl: "https://github.com/DevLev7/umka_new.github.io.git",
+        branch: "main"
+      }))
+  });
